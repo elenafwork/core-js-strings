@@ -41,7 +41,13 @@ function getStringLength(value) {
  *   isString(new String('test')) => true
  */
 function isString(value) {
-  if (value === true && typeof value.valueOf() === 'string') {
+  if (value === null || value === undefined) {
+    return false;
+  }
+  if (
+    typeof value === 'string' ||
+    (typeof value === 'object' && typeof value.valueOf() === 'string')
+  ) {
     return true;
   }
   return false;
