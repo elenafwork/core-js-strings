@@ -500,10 +500,24 @@ function extractEmails(str) {
  *
  */
 function encodeToRot13(str) {
+  const Rot13Input = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+  const Rot13Output = 'NOPQRSTUVWXYZABCDEFGHIJKLMnopqrstuvwxyzabcdefghijklm';
   const strArr = str.split(' ');
   const newArr = [];
   for (let i = 0; i < strArr.length; i += 1) {
-    newArr.push(strArr[i].split('').reverse().join(''));
+    const originWordArr = strArr[i].split('');
+    let codedWord = '';
+    for (let j = 0; j < originWordArr.length; j += 1) {
+      const originLetter = originWordArr[j];
+      if (Rot13Input.includes(originLetter)) {
+        const indexRot13 = Rot13Input.indexOf(originLetter);
+        const codedRot13 = Rot13Output.charAt(indexRot13);
+        codedWord += codedRot13;
+      } else {
+        codedWord += originLetter;
+      }
+    }
+    newArr.push(codedWord);
   }
   return newArr.join(' ');
 }
