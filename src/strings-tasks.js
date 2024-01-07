@@ -143,7 +143,6 @@ function removeTrailingWhitespaces(value) {
  *   repeatString('abc', -2) => ''
  */
 function repeatString(str, times) {
-  // let string = '';
   if (times >= 1) {
     return str.repeat(times);
   }
@@ -370,7 +369,20 @@ function isPalindrome(str) {
  */
 function findLongestWord(sentence) {
   const sentenceArr = sentence.split(' ');
-  return sentenceArr;
+
+  let lengthStr = '';
+  for (let i = 0; i < sentenceArr.length; i += 1) {
+    const wordLength = sentenceArr[i].length.toString();
+    lengthStr += wordLength;
+  }
+
+  const lengthArr = lengthStr.split('');
+
+  const maxDigitArr = lengthStr.split('').sort().reverse().join('')[0];
+
+  const indexOfLongest = lengthArr.join('').indexOf(maxDigitArr[0]);
+
+  return sentenceArr[indexOfLongest];
 }
 
 /**
